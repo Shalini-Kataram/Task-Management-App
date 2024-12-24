@@ -2,6 +2,7 @@
     "name": "react",
     "version": "1.0.0",
     "main": "index.js",
+    "source": "src/index.js",
     "scripts": {
         "start": "npx parcel src/index.html",
         "build": "parcel build",
