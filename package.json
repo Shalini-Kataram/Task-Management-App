@@ -1,0 +1,21 @@
+{
+    "name": "react",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Shalini Polapally",
+    "license": "ISC",
+    "description": "Task Management App",
+    "dependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "react-icons": "^5.4.0"
+    },
+    "devDependencies": {
+        "@parcel/transformer-sass": "^2.13.3",
+        "parcel": "^2.13.3",
+        "process": "^0.11.10"
+    }
+}
