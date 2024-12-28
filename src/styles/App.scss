@@ -21,14 +21,6 @@ h1 {
     font-weight: 400;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid $green;
-    align-items: center;
-    width: fit-content;
-}
-
 section {
     display: flex;
     width: 70rem;
@@ -47,7 +39,7 @@ section {
     font-family: "Kanit", sans-serif;
     border-radius: 0.25rem;
     font-size: 1rem;
-    margin-right: 0.25rem;
+    margin-right: 0.7rem;
 
     &:hover {
         background-color: $highlight;
