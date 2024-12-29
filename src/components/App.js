@@ -71,13 +71,13 @@ function App() {
     }
 
     return (
-        <div className="font-serif bg-[#132743] text-[#eeecda] flex flex-col items-center text-center ">
+        <div className="font-kanit bg-[#132743] text-[#eeecda] flex flex-col items-center text-center w-full">
             <h1 className="mx-8 my-8 font-extrabold text-4xl">
                 Task Management
             </h1>
             <button
                 onClick={togglePopup}
-                className="absolute top-2.5 right-2.5 border border-solid uppercase w-fit px-6 py-1.5 bg-[#9ad3bc] border-[#9ad3bc] text-[#132743] font-normal rounded text-sm hover:bg-[#2ec1ac] hover:border-[#2ec1ac] hover:cursor-pointer focus:outline-none focus:border-[#2ec1ac] focus:bg-[#2ec1ac] focus:text-white">
+                className="absolute top-2.5 right-2.5 button">
                 Add New Task
             </button>
             {!isFormVisible && (
@@ -153,15 +153,13 @@ function App() {
                                     )
                                 )}
                             </div>
-                            <button className="border border-solid uppercase w-fit px-6 py-1.5 bg-[#9ad3bc] border-[#9ad3bc] text-[#132743] font-normal rounded text-sm hover:bg-[#2ec1ac] hover:border-[#2ec1ac] hover:cursor-pointer focus:outline-none focus:border-[#2ec1ac] focus:bg-[#2ec1ac] focus:text-white">
-                                Save
-                            </button>
+                            <button className="button">Save</button>
                         </form>
                     </div>
                 </Popup>
             )}
             <main>
-                <section>
+                <section className="flex w-[70rem] m-8 ">
                     <StatusLine
                         tasks={tasks}
                         addTask={addTask}

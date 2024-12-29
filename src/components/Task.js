@@ -1,5 +1,5 @@
-import "../styles/task.scss";
 import { useState } from "react";
+import "../styles/App.scss";
 
 export default function Task(props) {
     const { deleteTask, task, updateTask } = props;
@@ -125,13 +125,13 @@ export default function Task(props) {
                     <>
                         <button
                             onClick={handleEditToggle}
-                            className="button edit mx-1"
+                            className="button border-[#edf285] bg-[#edf285] mx-1"
                             aria-label="Edit Task">
                             Edit
                         </button>
                         <button
                             onClick={handleDelete}
-                            className="button delete mx-1"
+                            className="button border-[#ff8282] bg-[#ff8282] mx-1 "
                             aria-label="Delete Task">
                             X
                         </button>
