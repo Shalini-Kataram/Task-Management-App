@@ -72,9 +72,7 @@ function App() {
 
     return (
         <div className="font-kanit bg-[#132743] text-[#eeecda] flex flex-col items-center text-center w-full">
-            <h1 className="mx-8 my-8 font-extrabold text-4xl">
-                Task Management
-            </h1>
+            <h1 className="mx-8 my-8 font-bold text-4xl">Task Management</h1>
             <button
                 onClick={togglePopup}
                 className="absolute top-2.5 right-2.5 button">
@@ -94,28 +92,28 @@ function App() {
                             className=" flex flex-col items-center text-center mx-0 my-1">
                             <input
                                 type="text"
-                                className="mb-2 py-2 w-full text-lg bg-transparent border border-solid border-transparent rounded text-[#eeecda] text-center resize-none flex font-serif hover:cursor-pointer hover:border hover:border-solid hover:border-[#eeecda] focus:outline-none focus:border-[#edc988] focus:text-[#edc988] placeholder:text-[#eeecda]"
+                                className="mb-2 py-2 w-full text-lg bg-transparent border border-solid border-transparent rounded text-[#eeecda] text-center resize-none flex hover:cursor-pointer hover:border hover:border-solid hover:border-[#eeecda] focus:outline-none focus:border-[#edc988] focus:text-[#edc988] placeholder:text-[#eeecda]"
                                 name="title"
                                 placeholder="Enter Title"
                                 aria-label="Task Title"
                             />
                             <textarea
                                 rows="2"
-                                className="mb-2 p-2 w-full bg-transparent border border-solid border-transparent rounded text-center flex text-lg hover:cursor-text hover:border hover:border-solid hover:border-[#eeecda] focus:outline-none focus:border-[#edc988] focus:text-[#edc988] placeholder:text-[#eeecda]"
+                                className="mb-2 p-2 w-full text-lg bg-transparent border border-solid border-transparent rounded text-[#eeecda] text-center flex hover:cursor-text hover:border hover:border-solid hover:border-[#eeecda] focus:outline-none focus:border-[#edc988] focus:text-[#edc988] placeholder:text-[#eeecda]"
                                 name="description"
                                 placeholder="Enter Description"
                                 aria-label="Task Description"
                             />
                             <div className="mb-6 flex flex-row">
-                                {["low", "medium", "high"].map((level) => (
+                                {["Low", "Medium", "High"].map((level) => (
                                     <label
                                         key={level}
-                                        className={`text-[#132743] uppercase rounded ${
-                                            level === "low" && "bg-[#9ad3bc]"
+                                        className={`text-[#132743] rounded ${
+                                            level === "Low" && "bg-[#9ad3bc]"
                                         } ${
-                                            level === "medium" && "bg-[#edf285]"
+                                            level === "Medium" && "bg-[#edf285]"
                                         } ${
-                                            level === "high" && "bg-[#ffa5a5]"
+                                            level === "High" && "bg-[#ffa5a5]"
                                         } hover:cursor-pointer hover:bg-[#2ec1ac] hover:border-[#2ec1ac] px-1.5 py-0.2 mx-1 my-1 mr-1.5`}>
                                         <input
                                             type="radio"
@@ -128,18 +126,18 @@ function App() {
                                 ))}
                             </div>
                             <div className="mb-6 flex flex-row">
-                                {["start", "in progress", "done"].map(
+                                {["Start", "In Progress", "Done"].map(
                                     (stat) => (
                                         <label
                                             key={stat}
-                                            className={`text-[#132743] uppercase rounded ${
-                                                stat === "done" &&
+                                            className={`text-[#132743] rounded ${
+                                                stat === "Done" &&
                                                 "bg-[#9ad3bc]"
                                             } ${
-                                                stat === "in progress" &&
+                                                stat === "In Progress" &&
                                                 "bg-[#edf285]"
                                             } ${
-                                                stat === "start" &&
+                                                stat === "Start" &&
                                                 "bg-[#ffa5a5]"
                                             } hover:cursor-pointer hover:bg-[#2ec1ac] hover:border-[#2ec1ac] px-1.5 py-0.2 mx-1 my-1 mr-1.5`}>
                                             <input

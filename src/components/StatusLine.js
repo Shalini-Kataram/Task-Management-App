@@ -6,7 +6,7 @@ export default function StatusLine(props) {
 
     return (
         <div className="w-full mx-0 my-2 flex flex-col justify-center items-center">
-            <h3 className="font-extrabold text-xl mb-5">Tasks</h3>
+            <h3 className="font-bold text-xl mb-5">Tasks</h3>
             {tasks.map((task, index) => (
                 <Task
                     key={index}

@@ -38,23 +38,23 @@ export default function Task(props) {
                         value={editedTask.title}
                         onChange={handleChange}
                         placeholder="Task Title"
-                        className="bg-transparent font-extrabold text-lg mb-2 border rounded p-2"
+                        className="bg-transparent font-bold text-lg mb-2 border rounded p-2"
                     />
                     <textarea
                         name="description"
                         value={editedTask.description}
                         onChange={handleChange}
                         placeholder="Task Description"
-                        className="bg-transparent textarea font-extrabold text-sm mb-2 border rounded p-2"
+                        className="bg-transparent textarea font-normal text-sm mb-2 border rounded p-2"
                     />
                     <div className="mb-6 flex flex-row">
-                        {["start", "in progress", "done"].map((stat) => (
+                        {["Start", "In Progress", "Done"].map((stat) => (
                             <label
                                 key={stat}
-                                className={`text-[#132743] uppercase rounded ${
-                                    stat === "done" && "bg-[#9ad3bc]"
-                                } ${stat === "in progress" && "bg-[#edf285]"} ${
-                                    stat === "start" && "bg-[#ffa5a5]"
+                                className={`text-[#132743] rounded ${
+                                    stat === "Done" && "bg-[#9ad3bc]"
+                                } ${stat === "In Progress" && "bg-[#edf285]"} ${
+                                    stat === "Start" && "bg-[#ffa5a5]"
                                 } hover:cursor-pointer hover:bg-[#2ec1ac] hover:border-[#2ec1ac] px-1.5 py-0.2 mx-1 my-1 mr-1.5`}>
                                 <input
                                     type="radio"
@@ -71,10 +71,10 @@ export default function Task(props) {
                 </div>
             ) : (
                 <div className="flex flex-col text-left">
-                    <p className="font-extrabold text-lg text-[#edc988] mb-1">
+                    <p className="font-bold text-lg text-[#edc988] mb-1">
                         {task.title || "Untitled Task"}
                     </p>
-                    <p className="font-extrabold text-sm text-[#eeecda] mb-1">
+                    <p className="font-normal text-sm text-[#eeecda] mb-1">
                         {task.description || "No description provided"}
                     </p>
                 </div>
@@ -84,20 +84,20 @@ export default function Task(props) {
                 {!isEditing && (
                     <>
                         <p
-                            className={`text-sm font-semibold uppercase mt-2 mr-3 ${
-                                task.urgency === "high"
+                            className={`text-lg font-semibold mt-1 mr-3 ${
+                                task.urgency === "High"
                                     ? "text-red-500"
-                                    : task.urgency === "medium"
+                                    : task.urgency === "Medium"
                                     ? "text-yellow-500"
                                     : "text-green-500"
                             }`}>
                             {task.urgency || "No urgency set"}
                         </p>
                         <p
-                            className={`text-sm font-semibold uppercase mt-2 mr-3 ${
-                                task.status === "start"
+                            className={`text-lg font-semibold mt-1 mr-3 ${
+                                task.status === "Start"
                                     ? "text-red-500"
-                                    : task.status === "in progress"
+                                    : task.status === "In Progress"
                                     ? "text-yellow-500"
                                     : "text-green-500"
                             }`}>
