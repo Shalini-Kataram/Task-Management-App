@@ -82,7 +82,7 @@ export default function Task(props) {
                 </div>
             )}
 
-            <div className="flex items-center">
+            <div className="flex items-center flex-wrap">
                 {!isEditing && (
                     <>
                         <p
@@ -125,12 +125,12 @@ export default function Task(props) {
                     <>
                         <button
                             onClick={handleEditToggle}
-                            className="bg-yellow-500 text-gray-900 px-4 py-2 rounded hover:bg-yellow-600 mx-1 transition-all focus:ring focus:ring-yellow-400">
+                            className="bg-yellow-500 text-gray-900 px-2 sm:px-4 lg:py-2 rounded hover:bg-yellow-600 mx-1 transition-all focus:ring focus:ring-yellow-400  ">
                             Edit
                         </button>
                         <button
                             onClick={handleDelete}
-                            className="bg-red-500 text-gray-900 px-4 py-2 rounded hover:bg-red-600 mx-1 transition-all focus:ring focus:ring-red-400">
+                            className="bg-red-500 text-gray-900 px-2 sm:px-4 lg:py-2 rounded hover:bg-red-600 mx-1 transition-all focus:ring focus:ring-red-400">
                             Delete
                         </button>
                     </>
