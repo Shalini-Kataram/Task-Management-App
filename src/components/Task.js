@@ -22,14 +22,14 @@ export default function Task(props) {
             setEditedTask({ ...task });
         }
     };
+
     const handleSave = () => {
         updateTask(editedTask);
-        console.log(editedTask);
         setIsEditing(false);
     };
 
     return (
-        <div className="p-4 mb-2 flex flex-wrap justify-between items-center border border-solid border-[#eeecda] rounded w-full">
+        <div className="p-4 mb-2 flex flex-wrap justify-between items-center border border-gray-600 rounded-lg w-full bg-gray-800 shadow-md">
             {isEditing ? (
                 <div className="flex flex-col text-left w-full">
                     <input
@@ -38,24 +38,26 @@ export default function Task(props) {
                         value={editedTask.title}
                         onChange={handleChange}
                         placeholder="Task Title"
-                        className="bg-transparent font-bold text-lg mb-2 border rounded p-2"
+                        className="bg-gray-700 text-gray-200 font-bold text-lg mb-2 border border-gray-600 rounded p-2 focus:outline-none focus:ring focus:ring-teal-400"
                     />
                     <textarea
                         name="description"
                         value={editedTask.description}
                         onChange={handleChange}
                         placeholder="Task Description"
-                        className="bg-transparent textarea font-normal text-sm mb-2 border rounded p-2"
+                        className="bg-gray-700 text-gray-200 font-normal text-sm mb-2 border border-gray-600 rounded p-2 focus:outline-none focus:ring focus:ring-teal-400"
                     />
                     <div className="mb-6 flex flex-row">
                         {["Start", "In Progress", "Done"].map((stat) => (
                             <label
                                 key={stat}
-                                className={`text-[#132743] rounded ${
-                                    stat === "Done" && "bg-[#9ad3bc]"
-                                } ${stat === "In Progress" && "bg-[#edf285]"} ${
-                                    stat === "Start" && "bg-[#ffa5a5]"
-                                } hover:cursor-pointer hover:bg-[#2ec1ac] hover:border-[#2ec1ac] px-1.5 py-0.2 mx-1 my-1 mr-1.5`}>
+                                className={`rounded px-2 py-1 mx-1 text-sm font-medium cursor-pointer transition-all ${
+                                    stat === "Done"
+                                        ? "bg-teal-500 text-gray-900 hover:bg-teal-600"
+                                        : stat === "In Progress"
+                                        ? "bg-yellow-500 text-gray-900 hover:bg-yellow-600"
+                                        : "bg-red-500 text-gray-900 hover:bg-red-600"
+                                }`}>
                                 <input
                                     type="radio"
                                     name="status"
@@ -71,16 +73,16 @@ export default function Task(props) {
                 </div>
             ) : (
                 <div className="flex flex-col text-left">
-                    <p className="font-bold text-lg text-[#edc988] mb-1">
+                    <p className="font-bold text-lg text-teal-400 mb-1">
                         {task.title || "Untitled Task"}
                     </p>
-                    <p className="font-normal text-sm text-[#eeecda] mb-1">
+                    <p className="font-normal text-sm text-gray-300 mb-1">
                         {task.description || "No description provided"}
                     </p>
                 </div>
             )}
 
-            <div className=" flex ">
+            <div className="flex items-center">
                 {!isEditing && (
                     <>
                         <p
@@ -89,7 +91,7 @@ export default function Task(props) {
                                     ? "text-red-500"
                                     : task.urgency === "Medium"
                                     ? "text-yellow-500"
-                                    : "text-green-500"
+                                    : "text-teal-400"
                             }`}>
                             {task.urgency || "No urgency set"}
                         </p>
@@ -99,7 +101,7 @@ export default function Task(props) {
                                     ? "text-red-500"
                                     : task.status === "In Progress"
                                     ? "text-yellow-500"
-                                    : "text-green-500"
+                                    : "text-teal-400"
                             }`}>
                             {task.status || "No status set"}
                         </p>
@@ -110,14 +112,12 @@ export default function Task(props) {
                     <>
                         <button
                             onClick={handleSave}
-                            className="button save mx-1"
-                            aria-label="Save Task">
+                            className="bg-teal-500 text-gray-900 px-4 py-2 rounded hover:bg-teal-600 mx-1 transition-all focus:ring focus:ring-teal-400">
                             Save
                         </button>
                         <button
                             onClick={handleEditToggle}
-                            className="button cancel mx-1"
-                            aria-label="Cancel Editing">
+                            className="bg-gray-600 text-gray-200 px-4 py-2 rounded hover:bg-gray-700 mx-1 transition-all focus:ring focus:ring-gray-400">
                             Cancel
                         </button>
                     </>
@@ -125,15 +125,13 @@ export default function Task(props) {
                     <>
                         <button
                             onClick={handleEditToggle}
-                            className="button border-[#edf285] bg-[#edf285] mx-1"
-                            aria-label="Edit Task">
+                            className="bg-yellow-500 text-gray-900 px-4 py-2 rounded hover:bg-yellow-600 mx-1 transition-all focus:ring focus:ring-yellow-400">
                             Edit
                         </button>
                         <button
                             onClick={handleDelete}
-                            className="button border-[#ff8282] bg-[#ff8282] mx-1 "
-                            aria-label="Delete Task">
-                            X
+                            className="bg-red-500 text-gray-900 px-4 py-2 rounded hover:bg-red-600 mx-1 transition-all focus:ring focus:ring-red-400">
+                            Delete
                         </button>
                     </>
                 )}
