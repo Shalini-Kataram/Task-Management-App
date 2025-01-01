@@ -29,7 +29,7 @@ export default function Task(props) {
     };
 
     return (
-        <div className="p-4 mb-2 flex flex-wrap justify-between items-center border border-gray-600 rounded-lg w-full bg-gray-800 shadow-md">
+        <div className="p-4 mb-2 flex flex-col justify-between sm:flex-row sm:flex-wrap sm:items-center items-center border border-gray-600 rounded-lg w-full bg-gray-800 shadow-md">
             {isEditing ? (
                 <div className="flex flex-col text-left w-full">
                     <input
@@ -72,21 +72,21 @@ export default function Task(props) {
                     </div>
                 </div>
             ) : (
-                <div className="flex flex-col text-left">
-                    <p className="font-bold text-lg text-teal-400 mb-1">
+                <div className="flex flex-col text-center  max-w-full  sm:max-w-sm sm:text-left p-2">
+                    <p className="font-bold text-lg text-teal-400 mb-1 break-words ">
                         {task.title || "Untitled Task"}
                     </p>
-                    <p className="font-normal text-sm text-gray-300 mb-1">
+                    <p className="font-normal text-sm text-gray-300 mb-1 break-words">
                         {task.description || "No description provided"}
                     </p>
                 </div>
             )}
 
-            <div className="flex items-center flex-wrap">
+            <div className="flex flex-col sm:flex-row sm-items-center sm:justify-between gap-2">
                 {!isEditing && (
-                    <>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                         <p
-                            className={`text-lg font-semibold mt-1 mr-3 ${
+                            className={`text-sm sm:text-lg font-semibold mt-1 sm:mt-0 ${
                                 task.urgency === "High"
                                     ? "text-red-500"
                                     : task.urgency === "Medium"
@@ -96,7 +96,7 @@ export default function Task(props) {
                             {task.urgency || "No urgency set"}
                         </p>
                         <p
-                            className={`text-lg font-semibold mt-1 mr-3 ${
+                            className={`text-sm sm:text-lg font-semibold mt-1 sm:mt-0 ${
                                 task.status === "Start"
                                     ? "text-red-500"
                                     : task.status === "In Progress"
@@ -105,35 +105,35 @@ export default function Task(props) {
                             }`}>
                             {task.status || "No status set"}
                         </p>
-                    </>
+                    </div>
                 )}
 
                 {isEditing ? (
-                    <>
+                    <div className="flex gap-2 flex-wrap">
                         <button
                             onClick={handleSave}
-                            className="bg-teal-500 text-gray-900 px-4 py-2 rounded hover:bg-teal-600 mx-1 transition-all focus:ring focus:ring-teal-400">
+                            className="bg-teal-500 text-gray-900 text-sm sm:text-base px-4 py-2 rounded hover:bg-teal-600 mx-1 transition-all focus:ring focus:ring-teal-400">
                             Save
                         </button>
                         <button
                             onClick={handleEditToggle}
-                            className="bg-gray-600 text-gray-200 px-4 py-2 rounded hover:bg-gray-700 mx-1 transition-all focus:ring focus:ring-gray-400">
+                            className="bg-gray-600 text-gray-200 text-sm sm:text-base px-4 py-2 rounded hover:bg-gray-700 mx-1 transition-all focus:ring focus:ring-gray-400">
                             Cancel
                         </button>
-                    </>
+                    </div>
                 ) : (
-                    <>
+                    <div className="flex flex-wrap">
                         <button
                             onClick={handleEditToggle}
-                            className="bg-yellow-500 text-gray-900 px-2 sm:px-4 lg:py-2 rounded hover:bg-yellow-600 mx-1 transition-all focus:ring focus:ring-yellow-400  ">
+                            className="bg-yellow-500 text-gray-900 text-xs sm:text-sm px-3 py-1 rounded hover:bg-yellow-600 mx-1 transition-all focus:ring focus:ring-yellow-400  ">
                             Edit
                         </button>
                         <button
                             onClick={handleDelete}
-                            className="bg-red-500 text-gray-900 px-2 sm:px-4 lg:py-2 rounded hover:bg-red-600 mx-1 transition-all focus:ring focus:ring-red-400">
+                            className="bg-red-500 text-gray-900 text-xs sm:text-sm px-3 py-1 rounded hover:bg-red-600 mx-1 transition-all focus:ring focus:ring-red-400">
                             Delete
                         </button>
-                    </>
+                    </div>
                 )}
             </div>
         </div>

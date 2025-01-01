@@ -38,7 +38,7 @@ export default function StatusLine(props) {
     }
 
     return (
-        <div className="w-full mx-0 my-2 flex flex-col justify-center items-center bg-gray-800 rounded-lg p-4 shadow-md">
+        <div className="w-full mx-0 my-2 flex flex-col flex-wrap justify-center items-center bg-gray-800 rounded-lg p-4 shadow-md">
             <div className="w-full flex flex-wrap justify-between items-center mb-4">
                 <h3 className="font-bold text-2xl mb-5 text-gray-200">Tasks</h3>
                 <button
@@ -49,7 +49,7 @@ export default function StatusLine(props) {
             </div>
             {!isFormVisible && (
                 <Popup>
-                    <div className="relative flex flex-col justify-center items-center border border-solid border-[#64748B] bg-[#1E293B] rounded p-4 mb-2 w-full max-w-md mx-4">
+                    <div className="relative flex flex-col flex-wrap justify-center items-center border border-solid border-[#64748B] bg-[#1E293B] rounded p-4 mb-2 w-full max-w-md mx-4">
                         <button
                             onClick={togglePopup}
                             className="absolute top-1 right-1 text-white"
