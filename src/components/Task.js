@@ -1,9 +1,7 @@
 import { useState } from "react";
 import "../styles/App.scss";
 
-export default function Task(props) {
-    const { deleteTask, task, updateTask } = props;
-
+export default function Task({ deleteTask, task, updateTask }) {
     const [isEditing, setIsEditing] = useState(false);
     const [editedTask, setEditedTask] = useState({ ...task });
 

@@ -1,59 +1,51 @@
 import React, { useState, useEffect } from "react";
 import "../styles/App.scss";
 import StatusLine from "./StatusLine";
-
 function App() {
     const [tasks, setTasks] = useState([]);
 
-    const togglePopup = () => {
-        setIsFormVisible((prev) => !prev);
-    };
-
     useEffect(() => {
-        loadTasksFromLocalStorage();
+        const loadedTasks = localStorage.getItem("tasks");
+        setTasks(loadedTasks ? JSON.parse(loadedTasks) : []);
     }, []);
 
-    function addTask(taskToAdd) {
-        const filteredTasks = tasks.filter((task) => task.id !== taskToAdd.id);
-        const newTaskList = [...filteredTasks, taskToAdd];
+    const saveTasksToLocalStorage = () => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    };
+
+    const addOrUpdateTask = (task) => {
+        const updatedTasks = tasks.filter((t) => t.id !== task.id);
+        const newTaskList = [...updatedTasks, task];
         setTasks(newTaskList);
         saveTasksToLocalStorage(newTaskList);
-    }
+    };
 
-    const updatedTask = (updateTask) => {
+    const updateTask = (updatedTask) => {
         setTasks(
-            tasks.map((task) => (task.id === updateTask.id ? updateTask : task))
+            tasks.map((task) =>
+                task.id === updatedTask.id ? updatedTask : task
+            )
         );
     };
 
-    function deleteTask(taskId) {
-        const filteredTasks = tasks.filter((task) => task.id !== taskId);
-        setTasks(filteredTasks);
-        saveTasksToLocalStorage(filteredTasks);
-    }
-
-    function saveTasksToLocalStorage(tasks) {
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-    }
-
-    function loadTasksFromLocalStorage() {
-        const loadedTasks = localStorage.getItem("tasks");
-        const parsedTasks = loadedTasks ? JSON.parse(loadedTasks) : [];
-        setTasks(parsedTasks);
-    }
+    const deleteTask = (taskId) => {
+        const remainingTasks = tasks.filter((task) => task.id !== taskId);
+        setTasks(remainingTasks);
+        saveTasksToLocalStorage(remainingTasks);
+    };
 
     return (
         <div className="relative font-kanit bg-[#1B2430] text-gray-100 flex flex-col items-center text-center w-full min-h-screen">
-            <h1 className="mt-8 mb-4 font-bold text-4xl text-[#F5F5F5]">
-                Task Management
-            </h1>
             <main className="flex flex-col items-center justify-start min-h-screen w-full">
-                <section className="flex flex-wrap justify-center gap-4 w-full sm:w-4/5 max-w-7xl m-8 px-4 rounded shadow-lg">
+                <h1 className="mt-8 mb-4 font-bold text-4xl text-[#F5F5F5]">
+                    Task Management
+                </h1>
+                <section className="flex flex-wrap justify-center gap-4 w-full sm:w-4/5 max-w-7xl    px-4 py-8 rounded shadow-lg bg-gray-800">
                     <StatusLine
                         tasks={tasks}
-                        addTask={addTask}
+                        addTask={addOrUpdateTask}
                         deleteTask={deleteTask}
-                        updatedTask={updatedTask}
+                        updatedTask={updateTask}
                     />
                 </section>
             </main>
