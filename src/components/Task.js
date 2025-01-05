@@ -1,12 +1,19 @@
 import { useState } from "react";
 import "../styles/App.scss";
+import Popup from "./Popup";
 
 export default function Task({ deleteTask, task, updateTask }) {
     const [isEditing, setIsEditing] = useState(false);
     const [editedTask, setEditedTask] = useState({ ...task });
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    const togglePopup = () => {
+        setIsDeleting((prev) => !prev);
+    };
 
     const handleDelete = () => {
         deleteTask(task.id);
+        setIsDeleting(false); // Close popup after deleting
     };
 
     const handleChange = (e) => {
@@ -33,14 +40,14 @@ export default function Task({ deleteTask, task, updateTask }) {
                     <input
                         type="text"
                         name="title"
-                        value={editedTask.title}
+                        value={editedTask.title || ""}
                         onChange={handleChange}
                         placeholder="Task Title"
                         className="bg-gray-700 text-gray-200 font-bold text-lg mb-2 border border-gray-600 rounded p-2 focus:outline-none focus:ring focus:ring-teal-400"
                     />
                     <textarea
                         name="description"
-                        value={editedTask.description}
+                        value={editedTask.description || ""}
                         onChange={handleChange}
                         placeholder="Task Description"
                         className="bg-gray-700 text-gray-200 font-normal text-sm mb-2 border border-gray-600 rounded p-2 focus:outline-none focus:ring focus:ring-teal-400"
@@ -70,8 +77,8 @@ export default function Task({ deleteTask, task, updateTask }) {
                     </div>
                 </div>
             ) : (
-                <div className="flex flex-col text-center  max-w-full  sm:max-w-sm sm:text-left p-2">
-                    <p className="font-bold text-lg text-teal-400 mb-1 break-words ">
+                <div className="flex flex-col text-center max-w-full sm:max-w-sm sm:text-left p-2">
+                    <p className="font-bold text-lg text-teal-400 mb-1 break-words">
                         {task.title || "Untitled Task"}
                     </p>
                     <p className="font-normal text-sm text-gray-300 mb-1 break-words">
@@ -123,14 +130,43 @@ export default function Task({ deleteTask, task, updateTask }) {
                     <div className="flex flex-wrap">
                         <button
                             onClick={handleEditToggle}
-                            className="bg-yellow-500 text-gray-900 text-xs sm:text-sm px-3 py-1 rounded hover:bg-yellow-600 mx-1 transition-all focus:ring focus:ring-yellow-400  ">
+                            className="bg-yellow-500 text-gray-900 text-xs sm:text-sm px-3 py-1 rounded hover:bg-yellow-600 mx-1 transition-all focus:ring focus:ring-yellow-400">
                             Edit
                         </button>
                         <button
-                            onClick={handleDelete}
+                            onClick={togglePopup}
                             className="bg-red-500 text-gray-900 text-xs sm:text-sm px-3 py-1 rounded hover:bg-red-600 mx-1 transition-all focus:ring focus:ring-red-400">
                             Delete
                         </button>
+                        {isDeleting && (
+                            <Popup>
+                                <div className="relative flex flex-col justify-center items-center border border-solid border-[#64748B] bg-[#1E293B] rounded p-4 mb-2 w-full max-w-md mx-4">
+                                    <button
+                                        onClick={togglePopup}
+                                        className="absolute top-1 right-1 text-white"
+                                        aria-label="Close Popup">
+                                        X
+                                    </button>
+                                    <div className="flex flex-col">
+                                        <h1 className="mb-3">
+                                            Do you want to delete this?
+                                        </h1>
+                                        <div className="flex flex-row justify-center items-center">
+                                            <button
+                                                className="button"
+                                                onClick={handleDelete}>
+                                                Yes
+                                            </button>
+                                            <button
+                                                className="button"
+                                                onClick={togglePopup}>
+                                                No
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Popup>
+                        )}
                     </div>
                 )}
             </div>

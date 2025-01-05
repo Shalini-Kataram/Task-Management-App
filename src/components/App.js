@@ -9,15 +9,16 @@ function App() {
         setTasks(loadedTasks ? JSON.parse(loadedTasks) : []);
     }, []);
 
+    useEffect(() => {
+        saveTasksToLocalStorage();
+    }, [tasks]);
+
     const saveTasksToLocalStorage = () => {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     };
 
-    const addOrUpdateTask = (task) => {
-        const updatedTasks = tasks.filter((t) => t.id !== task.id);
-        const newTaskList = [...updatedTasks, task];
-        setTasks(newTaskList);
-        saveTasksToLocalStorage(newTaskList);
+    const addOrUpdateTask = (newTask) => {
+        setTasks([...tasks, newTask]);
     };
 
     const updateTask = (updatedTask) => {
@@ -29,9 +30,7 @@ function App() {
     };
 
     const deleteTask = (taskId) => {
-        const remainingTasks = tasks.filter((task) => task.id !== taskId);
-        setTasks(remainingTasks);
-        saveTasksToLocalStorage(remainingTasks);
+        setTasks(tasks.filter((task) => task.id !== taskId));
     };
 
     return (
